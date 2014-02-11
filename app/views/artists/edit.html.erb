@@ -1,0 +1,23 @@
+<h1> Edit an Artist </h1>
+
+<form action="/artists/<%= @artist.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input name='authenticity_token' type='hidden' value='<%= form_authenticity_token %>' />
+  
+  <label>
+    Name:
+    <input type='text' name='name' value="<%= @artist.name%>" />
+  </label>
+
+  <label>
+    Genre:
+    <input type='text' name='genre' value="<%= @artist.genre%>" />
+  </label>
+
+  <label>
+    Photo Url:
+    <input type='text' name='photo_url' value="<%= @artist.photo_url%>"/>
+  </label>
+
+  <button> Click to Edit Artist </button>
+</form>

@@ -1,0 +1,17 @@
+<h1> Info for <%= @user.first_name %> <%= @user.last_name %></h1>
+
+<p>Email: <%= @user.email %> </p>
+<p>Date of Birth: <%= @user.dob %> </p>
+<p>Gender: <%= @user.gender %> </p>
+<p>Facebook Page: <%= @user.facebook_link %> </p>
+<p>Password: <%= @user.password %> </p>
+
+<a href='/users/<%= @user.id%>/edit'>Update Info</a>
+
+<form action="/users/<%= @user.id%>" method="POST">
+
+  <input type="hidden" name="_method" value="delete">
+  <input name='authenticity_token' type='hidden' value='<%= form_authenticity_token %>' />
+  <br></br>
+  <button>Delete My Account</button>
+</form>

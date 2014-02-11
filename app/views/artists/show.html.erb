@@ -1,0 +1,7 @@
+<h1>Info for <%=@artist.name %></h1>
+
+<p>Genre: <%= @artist.genre %></p>
+<img src="<%= @artist.photo_url %>" />
+<br></br>
+<button><a href="/artists/<%= @artist.id %>/songs">Songs</a></button>
+<button><a href="/artists">Main Page</a></button>
