@@ -1,17 +1,10 @@
-<h1> Edit a Song </h1>
+<h1> Edit Song </h1>
 
-<form action="/artists/<%= @artist.id%>/songs/<%= @song.id%>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <input name='authenticity_token' type='hidden' value='<%= form_authenticity_token %>' />
-  <label>
-    Title:
-    <input type='text' name='title' value="<%= @song.title%>" />
-  </label>
+<%= form_for [@artist, @song] do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.label :year %>
+<%= f.number_field :year %>
+<%= f.submit %>
+<% end %>
 
-  <label>
-    Year:
-    <input type='integer' name='year' value="<%= @song.year%>" />
-  </label>
-
-  <button> Click to Edit Song </button>
-</form>

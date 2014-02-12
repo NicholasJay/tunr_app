@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  self.before_action(:load_artists, { only: [:show, :edit, :update, :destroy]})
+  self.before_action :load_artists, only: [:show, :edit, :update, :destroy]
 
   def index
     @artist = Artist.all
@@ -11,12 +11,12 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    render(:new)
+    @artist = Artist.new
   end
 
   def create
-    @artist_new = Artist.create(artist_params)
-    redirect_to("/artists/#{@artist_new.id}/songs")
+    @artist = Artist.create(artist_params)
+    redirect_to("/artists/#{@artist.id}/songs")
   end
 
   def edit
@@ -41,7 +41,7 @@ class ArtistsController < ApplicationController
   end
 
   def artist_params
-    {name: params[:name], genre: params[:genre], photo_url: params[:photo_url]}
+    params.require(:artist).permit(:name, :genre, :photo_url)
   end
 
 end

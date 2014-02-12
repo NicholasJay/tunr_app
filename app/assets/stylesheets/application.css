@@ -16,6 +16,9 @@ body {
 }
 h1 {
   font-weight: 100;
+  border: 2px solid skyblue;
+  border-radius: 10px;
+  background-color: skyblue;
 }
 
 img {
@@ -28,4 +31,19 @@ li {
 
 #errors {
   color: red;
+}
+button {
+  width: 100px;
+  border-radius: 7px;
+  background-color: skyblue;
+  font-family: helvetica;
+  font-size: 13px
+}
+
+a {
+  color: blue;
+}
+.titles {
+  width: 400px;
+  margin: 0 auto;
 }

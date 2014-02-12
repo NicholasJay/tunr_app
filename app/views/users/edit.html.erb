@@ -13,43 +13,20 @@
   </div>
 <% end %>
 
-<form action="/users/<%=@user.id%>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <input name='authenticity_token' type='hidden' value='<%= form_authenticity_token %>' />
-  <label>
-    First Name:
-    <input type='text' name='first_name' value='<%= @user.first_name%>'/>
-  </label>
-
-  <label>
-    Last Name:
-    <input type='text' name='last_name' value='<%= @user.last_name%>'/>
-  </label>
-
-  <label>
-    Email:
-    <input type='text' name='email' value='<%= @user.email%>'/>
-  </label>
-
-  <label>
-    Date of Birth:
-    <input type='date' name='dob' value='<%= @user.dob%>'/>
-  </label>
-
-  <label>
-    Gender:
-    <input type='text' name='gender' value='<%= @user.gender%>'/>
-  </label>
-
-  <label>
-    Facebook Link:
-    <input type='text' name='facebook_link' value='<%= @user.facebook_link%>'/>
-  </label>
-
-  <label>
-    Password:
-    <input type='password' name='password' />
-  </label>
-
-  <button> Complete Update</button>
-</form>
+<%= form_for @user, url: {action: "update"} do |f| %>
+<%= f.label :first_name %>
+<%= f.text_field :first_name %>
+<%= f.label :last_name %>
+<%= f.text_field :last_name %>
+<%= f.label :email %>
+<%= f.text_field :email %>
+<%= f.label :birthdate %>
+<%= f.date_field :dob %>
+<%= f.label :gender %>
+<%= f.text_field :gender %>
+<%= f.label :facebook_link %>
+<%= f.url_field :facebook_link %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= f.submit %>
+<% end %>

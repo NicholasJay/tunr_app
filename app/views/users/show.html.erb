@@ -6,12 +6,8 @@
 <p>Facebook Page: <%= @user.facebook_link %> </p>
 <p>Password: <%= @user.password %> </p>
 
-<a href='/users/<%= @user.id%>/edit'>Update Info</a>
 
-<form action="/users/<%= @user.id%>" method="POST">
+<%=link_to "Update Info", {controller: "users",action: "edit", id: "#{@user.id}"}%>
 
-  <input type="hidden" name="_method" value="delete">
-  <input name='authenticity_token' type='hidden' value='<%= form_authenticity_token %>' />
-  <br></br>
-  <button>Delete My Account</button>
-</form>
+<%= button_to "Delete Account", { action: "destroy", id: @user.id}, method: :delete, html: "del", data: { confirm: "Are you sure?"} %>
+

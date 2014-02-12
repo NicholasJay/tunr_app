@@ -1,47 +1,37 @@
 class SongsController < ApplicationController
 
-  # self.before_action :load_artist
-  # self.before_action :load_song :only [:edit, :update, :destroy]
+  self.before_action :load_artist
+  self.before_action :load_song, only: [:edit, :update, :destroy]
 
   def index
-    @artist = Artist.find(params[:artist_id])
     @songs = @artist.songs.all
     render(:index)
   end
 
   def show
-    @artist = Artist.find(params[:artist_id])
     @songs = @artist.songs.find(params[:id])
     render(:show)
   end
 
   def new
-    @artist = Artist.find(params[:artist_id])
-    render(:new)
+    @song = Song.new
   end
 
   def create
-    @artist = Artist.find(params[:artist_id])
-    @artist.songs.create(title: params[:title], year: params[:year])
-    redirect_to("/artists/#{@artist.id}/songs")
+    @artist.songs.create(song_params)
+    redirect_to artist_path(@artist)
   end
 
   def edit
-    @artist = Artist.find(params[:artist_id])
-    @song = Song.find(params[:id])
     render(:edit)
   end
 
   def update
-    @artist = Artist.find(params[:artist_id])
-    @song = Song.find(params[:id])
-    @song.update(title: params[:title], year: params[:year])
-    redirect_to("/artists/#{@artist.id}/songs")  
+    @song.update(song_params)  
+    redirect_to artist_path(@artist)
   end
 
   def destroy
-    @artist = Artist.find(params[:artist_id])
-    @song = @artist.songs.find(params[:id])
     @song.destroy
     redirect_to("/artists/#{@artist.id}/songs")
   end
@@ -57,11 +47,7 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    return {
-      title: params[:title],
-      year: params[:year],
-      artist_id: params[:artist_id]
-    }
+    params.require(:song).permit(:title, :year)
   end
 
 end

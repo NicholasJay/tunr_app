@@ -1,4 +1,11 @@
+<div class='mainbox'>
+<div class='titles'>
 <h1> Welcome to TunR! </h1>
-<a href="/users/new">Join us!</a>
+</div>
+<button><%=link_to "Join Us!", controller: "users", action: "new"%></button>
+<button><%=link_to "Login", sessions_path %></button>
 <br></br>
 <img src="http://coolmaterial.com/wp-content/uploads/2008/10/boombox-gelaskin.jpg" />
+
+<p><%= link_to "Browse Artists", artists_path %></p>
+</div>

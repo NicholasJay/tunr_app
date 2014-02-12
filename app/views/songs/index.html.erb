@@ -7,16 +7,9 @@
   <% @songs.each do |song| %>
     <li><%= song.title %>: <%= song.year %></li>
 
-    <li><button><a href="/artists/<%=@artist.id%>/songs/<%=song.id%>/edit">Edit</a></button></li>
+    <%= link_to "Edit Song", {controller: "songs",action: "edit", id: "#{song.id}"}%>
+    <%= button_to "Delete Song", { action: "destroy", id: song.id}, method: :delete, data: { confirm: "Are you sure?"} %><br />
 
-    <form action="/artists/<%= @artist.id%>/songs/<%=song.id%>" method="POST">
-
-    <input type="hidden" name="_method" value="delete">
-    <input name='authenticity_token' type='hidden' value='<%= form_authenticity_token %>' />
-
-    <button>Delete</button>
-    </form>
-    <br></br>
   <% end %>
 </ul>
 <button><a href="/artists">Main Page</a></button>

@@ -1,23 +1,15 @@
 class UsersController < ApplicationController
+    before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
   end
 
-  def new
-    render :new
+  def new     
+    @user = User.new
   end
 
   def create
-    @user = User.create({
-        email: params[:email], 
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        dob: params[:dob],
-        gender: params[:gender],
-        facebook_link: params[:facebook_link],
-        password: params[:password]
-      })
-
+    @user = User.create(user_params)
     if @user.valid?
       redirect_to("/users/#{@user.id}")
     else
@@ -26,29 +18,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     render(:show)
   end
 
   def edit
-    @user = User.find(params[:id])
     render :edit
   end
 
   def update
-    @user = User.find(params[:id])
-      if params[:password].empty? 
-        params[:password] = @user.password
-      end
-    @update = @user.update({
-      email: params[:email], 
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      dob: params[:dob],
-      gender: params[:gender],
-      facebook_link: params[:facebook_link],
-      password: params[:password]
-      })
+    @update = @user.update(user_params)
+
     if @update
       redirect_to("/users/#{@user.id}")
     else
@@ -57,10 +36,18 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to("/")
   end
+
+  private
+    def load_user
+      return @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:id, :email, :first_name, :last_name, :dob, :gender, :password, :facebook_link)
+    end
 
 
 end
