@@ -9,16 +9,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.valid?
-      redirect_to("/users/#{@user.id}")
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to user_path(@user)
     else
       render :new
     end
   end
 
   def show
-    render(:show)
+    render :show
   end
 
   def edit
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:id, :email, :first_name, :last_name, :dob, :gender, :password, :facebook_link)
+      params.require(:user).permit(:email, :first_name, :last_name, :dob, :gender, :facebook_link, :password, :password_confirmation)
     end
 
 

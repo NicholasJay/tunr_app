@@ -1,4 +1,4 @@
-<h1> Sign Up for TunR! </h1>
+<h1> Sign Up for Tun<span>R</span>! </h1>
 
 <% unless @user.errors.messages.empty? %>
   <div id="errors">
@@ -28,5 +28,7 @@
 <%= f.url_field :facebook_link %><br />
 <%= f.label :password %>
 <%= f.password_field :password %><br />
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %><br />
 <%= f.submit "create" %>
 <% end %>

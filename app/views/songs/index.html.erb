@@ -6,10 +6,13 @@
 <ul>
   <% @songs.each do |song| %>
     <li><%= song.title %>: <%= song.year %></li>
+      <audio controls>
+        <source src="<%= song.preview_url %>">
+      </audio>
+      <br />
 
     <%= link_to "Edit Song", {controller: "songs",action: "edit", id: "#{song.id}"}%>
     <%= button_to "Delete Song", { action: "destroy", id: song.id}, method: :delete, data: { confirm: "Are you sure?"} %><br />
-
   <% end %>
 </ul>
 <button><a href="/artists">Main Page</a></button>

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     #if that user exists and has a password that was sent
-    if user && (user.password == params[:password])
+    if user && (user.authenticate(params[:password]) )
 
     #save the user_id in the session hash and redirect to the user's homepage
       session[:user_id] = user.id

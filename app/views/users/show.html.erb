@@ -4,7 +4,7 @@
 <p>Date of Birth: <%= @user.dob %> </p>
 <p>Gender: <%= @user.gender %> </p>
 <p>Facebook Page: <%= @user.facebook_link %> </p>
-<p>Password: <%= @user.password %> </p>
+
 
 
 <%=link_to "Update Info", {controller: "users",action: "edit", id: "#{@user.id}"}%>

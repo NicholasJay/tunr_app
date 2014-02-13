@@ -13,12 +13,14 @@
  */
 body {
   text-align: center;
+  background: slategrey;
 }
 h1 {
   font-weight: 100;
   border: 2px solid skyblue;
   border-radius: 10px;
   background-color: skyblue;
+  box-shadow: 5px 5px 5px 0;
 }
 
 img {
@@ -47,3 +49,17 @@ a {
   width: 400px;
   margin: 0 auto;
 }
+span {
+  font-family: baskerville;
+  font-style: italic;
+}
+.mainbox {
+  border: 2px solid skyblue;
+  border-radius: 10px;
+  width: 400px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 5px 5px 5px 0;
+}
+
+
